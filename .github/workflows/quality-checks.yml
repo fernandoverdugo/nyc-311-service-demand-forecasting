@@ -26,10 +26,12 @@ jobs:
       - run: python -m compileall -q src tests
       - run: python -m pytest -q
       - run: python src/fetch_daily_counts.py
+      - run: python src/fetch_category_counts.py
       - run: python src/baseline_backtest.py
       - run: python src/statistical_backtest.py
       - run: python src/ml_backtest.py
       - run: python src/model_comparison.py
       - run: python src/summarize_benchmark.py
       - run: python src/operational_forecast.py
+      - run: python src/category_backtest.py
       - run: python src/validate_project.py
