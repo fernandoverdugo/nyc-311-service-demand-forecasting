@@ -50,7 +50,7 @@ These are empirical planning bands based on historical backtest errors, not para
 
 ## Staffing translation
 
-To demonstrate how a demand forecast can support operational planning, the project uses an explicit illustrative scenario:
+To connect the demand forecast with operational planning, the project uses an explicit illustrative scenario:
 
 - 45 requests handled per FTE per day
 - 85% target utilization
@@ -63,7 +63,7 @@ Under those assumptions:
 | 80% upper demand band | **318 FTE** |
 | 95% upper demand band | **336 FTE** |
 
-These values are **not NYC staffing standards** and should not be interpreted as claims about actual agency productivity or staffing needs. They are transparent scenario assumptions used to demonstrate forecast-to-capacity translation.
+These values are **not NYC staffing standards** and should not be interpreted as claims about actual agency productivity or staffing needs. They are transparent scenario assumptions used for forecast-to-capacity translation.
 
 ## Infrastructure reliability
 
