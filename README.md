@@ -10,7 +10,7 @@ How accurately can a city operations team forecast near-term 311 service-request
 
 This project is intentionally forecasting-first.
 
-It will demonstrate:
+It demonstrates:
 
 - public API ingestion
 - daily time-series aggregation
@@ -109,6 +109,71 @@ The result reinforces the project's central forecasting lesson: model choice sho
 
 [Read the Milestone 3 findings](docs/MILESTONE3_TARGETED_MODELS.md)
 
-## Next milestone
+## Milestone 4 — stakeholder forecast dashboard
 
-Milestone 4 will convert the validated forecast outputs into a stakeholder-facing dashboard covering model accuracy, category forecastability, uncertainty, and staffing scenarios.
+**Complete**
+
+The validated forecasting outputs are now consolidated into a stakeholder-facing dashboard covering:
+
+- citywide forecast demand and preferred-model accuracy;
+- empirical 80% and 95% planning ranges;
+- illustrative staffing translation;
+- citywide model comparison;
+- complaint-category forecastability;
+- targeted model improvements for volatile service lines.
+
+**[View the dashboard source](docs/dashboard.html)**
+
+[Read the Milestone 4 findings](docs/MILESTONE4_DASHBOARD.md)
+
+## Current status
+
+**Portfolio-ready**
+
+The completed workflow is:
+
+```text
+NYC Open Data
+      ↓
+daily demand series
+      ↓
+rolling-origin model benchmark
+      ↓
+forecast uncertainty + staffing translation
+      ↓
+category forecast diagnostics
+      ↓
+category-specific model selection
+      ↓
+stakeholder dashboard
+```
+
+The central result is deliberately practical: model complexity is not treated as a goal. The project selects simple recent-level forecasting for citywide demand, annual persistence where strong seasonality supports it, and lag/calendar machine learning where it materially improves volatile categories.
+
+## Reproduce the analysis
+
+Requires Python 3.14.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+
+python src/fetch_daily_counts.py
+python src/baseline_backtest.py
+python src/statistical_backtest.py
+python src/ml_backtest.py
+python src/model_comparison.py
+python src/summarize_benchmark.py
+python src/operational_forecast.py
+
+python src/fetch_targeted_category_counts.py
+python src/targeted_category_backtest.py
+python src/summarize_targeted_categories.py
+
+python src/build_dashboard.py
+python src/validate_dashboard.py
+python src/validate_project.py
+```
+
+Normal CI refreshes the live forecasting inputs used by Milestones 1 and 3 while retaining the validated eight-category Milestone 2 benchmark as committed metadata to avoid unnecessary load on NYC Open Data.
