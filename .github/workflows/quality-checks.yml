@@ -37,4 +37,5 @@ jobs:
       - run: python src/summarize_targeted_categories.py
       - run: python src/build_dashboard.py
       - run: python src/validate_dashboard.py
+      - run: python src/validate_committed_benchmarks.py
       - run: python src/validate_project.py
