@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NYC 311 Service Demand Forecasting Dashboard</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#17202a;--muted:#667085;--line:#e4e7ec;--accent:#2457d6;--accent2:#79a4ff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+main{max-width:1180px;margin:0 auto;padding:40px 24px 64px}h1{margin:0;font-size:34px}.subtitle{color:var(--muted);margin:8px 0 28px;line-height:1.5}
+.grid{display:grid;gap:16px}.kpis{grid-template-columns:repeat(4,1fr)}.two{grid-template-columns:1fr 1fr}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.kpi-label{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}.kpi-value{font-size:30px;font-weight:700;margin-top:6px}.section{margin-top:22px}h2{margin:0 0 16px;font-size:20px}.note{color:var(--muted);font-size:13px;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:11px 9px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--muted);font-weight:600}
+.interval{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.interval-item{padding:14px;border:1px solid var(--line);border-radius:10px}.interval-item strong{display:block;font-size:22px;margin-top:4px}
+.callout{border-left:4px solid var(--accent);padding:14px 16px;background:#f8faff;border-radius:8px;line-height:1.55}
+@media(max-width:850px){.kpis,.two{grid-template-columns:1fr 1fr}}@media(max-width:620px){.kpis,.two,.interval{grid-template-columns:1fr}main{padding:28px 16px 48px}table{font-size:12px}}
+</style>
+</head><body><main>
+<h1>NYC 311 Service Demand Forecasting</h1>
+<p class="subtitle">Stakeholder forecast dashboard • fixed benchmark window 2022-01-01 through 2026-09-30 • 28-day planning horizon</p>
+<div class="grid kpis">
+<div class="card"><div class="kpi-label">Forecast demand</div><div class="kpi-value">10,842</div><div class="note">requests per day</div></div>
+<div class="card"><div class="kpi-label">Preferred model WAPE</div><div class="kpi-value">7.3%</div><div class="note">28-day rolling mean</div></div>
+<div class="card"><div class="kpi-label">Illustrative staffing</div><div class="kpi-value">284</div><div class="note">FTE at point forecast</div></div>
+<div class="card"><div class="kpi-label">Category median WAPE</div><div class="kpi-value">28.8%</div><div class="note">8 high-volume complaint types</div></div>
+</div>
+<div class="grid two section">
+<section class="card"><h2>Planning uncertainty</h2><div class="interval">
+<div class="interval-item"><span class="note">Point</span><strong>10,842</strong><span class="note">requests/day</span></div>
+<div class="interval-item"><span class="note">80% planning band</span><strong>9,528–12,156</strong><span class="note">318 FTE at upper band</span></div>
+<div class="interval-item"><span class="note">95% planning band</span><strong>8,864–12,820</strong><span class="note">336 FTE at upper band</span></div>
+</div><p class="note">Bands are empirical planning ranges based on rolling-origin backtest errors, not parametric confidence intervals.</p></section>
+<section class="card"><h2>Operational interpretation</h2><div class="callout">Citywide daily demand is comparatively stable: the simple <strong>28-day rolling mean</strong> outperformed the more complex statistical and machine-learning benchmarks on mean out-of-time WAPE. Category-level demand is much less uniform, so service lines should be forecast using models matched to their behavior.</div><p class="note">Staffing assumes 45 requests per FTE per day at 85.0% target utilization. This is an illustrative scenario, not an NYC staffing standard.</p></section>
+</div>
+<section class="card section"><h2>Citywide model comparison</h2><table><thead><tr><th>Model</th><th>Mean WAPE</th></tr></thead><tbody>
+<tr><td>28-day rolling mean</td><td>7.3%</td></tr><tr><td>Weekly ETS</td><td>7.3%</td></tr><tr><td>HistGradientBoosting</td><td>7.7%</td></tr><tr><td>Naive</td><td>8.1%</td></tr><tr><td>7-day seasonal naive</td><td>9.1%</td></tr>
+</tbody></table></section>
+<section class="card section"><h2>Category forecastability</h2><p class="note">The same rolling-mean benchmark is applied to the eight highest-volume complaint types. Lower WAPE indicates better forecast accuracy.</p><table><thead><tr><th>Complaint type</th><th>Requests</th><th>Mean WAPE</th></tr></thead><tbody>
+<tr><td>Illegal Parking</td><td>2,434,412</td><td>8.6%</td></tr>
+<tr><td>Blocked Driveway</td><td>812,009</td><td>9.1%</td></tr>
+<tr><td>Abandoned Vehicle</td><td>322,172</td><td>20.5%</td></tr>
+<tr><td>UNSANITARY CONDITION</td><td>559,238</td><td>27.3%</td></tr>
+<tr><td>Noise - Residential</td><td>1,800,082</td><td>30.2%</td></tr>
+<tr><td>Street Condition</td><td>391,653</td><td>34.1%</td></tr>
+<tr><td>Noise - Street/Sidewalk</td><td>780,567</td><td>47.9%</td></tr>
+<tr><td>HEAT/HOT WATER</td><td>1,289,976</td><td>53.0%</td></tr>
+</tbody></table></section>
+<section class="card section"><h2>Targeted model improvements</h2><table><thead><tr><th>Complaint type</th><th>Rolling mean</th><th>Best model</th><th>Best WAPE</th><th>Improvement</th></tr></thead><tbody>
+<tr><td>HEAT/HOT WATER</td><td>53.0%</td><td>Annual naive (365d)</td><td>35.2%</td><td><strong>33.5%</strong></td></tr>
+<tr><td>Noise - Street/Sidewalk</td><td>47.9%</td><td>Calendar/lag HGB</td><td>30.7%</td><td><strong>35.9%</strong></td></tr>
+<tr><td>Street Condition</td><td>34.1%</td><td>Calendar/lag HGB</td><td>23.7%</td><td><strong>30.4%</strong></td></tr>
+</tbody></table></section>
+<section class="card section"><h2>Decision takeaway</h2><div class="callout"><strong>Use simple models where they work.</strong> Aggregate 311 demand is forecastable with a recent-level baseline, while volatile categories benefit from service-specific seasonal or lag/calendar models. Forecast uncertainty should be translated into planning ranges rather than a single staffing number.</div></section>
+<p class="note section">Source: NYC Open Data, 311 Service Requests from 2020 to Present (dataset erm2-nwe9). Forecast benchmark uses a fixed historical analysis window for reproducibility.</p>
+</main></body></html>
