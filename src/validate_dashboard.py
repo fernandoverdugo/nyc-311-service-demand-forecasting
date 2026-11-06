@@ -11,6 +11,19 @@ def pct(value):
     return f"{value * 100:.1f}%"
 
 
+def model_label(value):
+    labels = {
+        "rolling_mean_28d": "28-day rolling mean",
+        "ets_weekly": "Weekly ETS",
+        "hist_gradient_boosting": "HistGradientBoosting",
+        "naive": "Naive",
+        "seasonal_naive_7d": "7-day seasonal naive",
+        "annual_naive_365d": "Annual naive (365d)",
+        "calendar_lag_hgb": "Calendar/lag HGB",
+    }
+    return labels.get(value, value)
+
+
 def main():
     if not DASHBOARD.exists():
         raise RuntimeError("Dashboard HTML is missing.")
@@ -43,7 +56,7 @@ def main():
     ]
 
     for row in benchmark["ranking"]:
-        expected.extend([row["model"].replace("_", " "), pct(row["wape"])])
+        expected.extend([model_label(row["model"]), pct(row["wape"])])
 
     for row in categories["categories"]:
         expected.extend([row["complaint_type"], pct(row["wape"])])
