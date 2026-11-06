@@ -50,7 +50,7 @@ def fetch_payload(url, attempts=5):
                 raise
             if attempt == attempts:
                 raise
-        except urllib.error.URLError:
+        except (urllib.error.URLError, TimeoutError):
             if attempt == attempts:
                 raise
 
