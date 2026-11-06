@@ -30,6 +30,15 @@ def main():
     category_json = (
         ROOT / "data" / "processed" / "category_summary.json"
     )
+    targeted_folds = (
+        ROOT / "data" / "processed" / "targeted_category_folds.csv"
+    )
+    targeted_summary = (
+        ROOT / "data" / "processed" / "targeted_category_summary.csv"
+    )
+    targeted_json = (
+        ROOT / "data" / "processed" / "targeted_category_summary.json"
+    )
 
     for path in [
         source,
@@ -41,6 +50,9 @@ def main():
         category_folds,
         category_summary,
         category_json,
+        targeted_folds,
+        targeted_summary,
+        targeted_json,
     ]:
         if not path.exists():
             raise RuntimeError(f"Missing required artifact: {path}")
@@ -52,6 +64,8 @@ def main():
     category_daily = pd.read_csv(category_raw, parse_dates=["date"])
     category_results = pd.read_csv(category_folds)
     category_metrics = pd.read_csv(category_summary)
+    targeted_results = pd.read_csv(targeted_folds)
+    targeted_metrics = pd.read_csv(targeted_summary)
 
     expected_days = len(
         pd.date_range(
@@ -135,6 +149,31 @@ def main():
 
     if not category_metrics["wape"].between(0, 2).all():
         raise RuntimeError("Category WAPE values are outside expected range.")
+
+    if targeted_results["complaint_type"].nunique() != 3:
+        raise RuntimeError("Expected three targeted volatile categories.")
+
+    expected_targeted_rows = (
+        3
+        * CONFIG["backtest_folds"]
+        * 3
+    )
+    if len(targeted_results) != expected_targeted_rows:
+        raise RuntimeError("Unexpected targeted backtest row count.")
+
+    expected_models = {
+        "rolling_mean_28d",
+        "annual_naive_365d",
+        "calendar_lag_hgb",
+    }
+    if set(targeted_results["model"]) != expected_models:
+        raise RuntimeError("Targeted model set does not match contract.")
+
+    if targeted_metrics["wape_mean"].isna().any():
+        raise RuntimeError("Targeted summary contains missing WAPE values.")
+
+    if not targeted_metrics["wape_mean"].between(0, 2).all():
+        raise RuntimeError("Targeted WAPE values are outside expected range.")
 
     print("NYC 311 forecasting validation passed.")
 
