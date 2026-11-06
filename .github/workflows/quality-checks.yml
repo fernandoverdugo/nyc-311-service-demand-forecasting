@@ -35,4 +35,6 @@ jobs:
       - run: python src/operational_forecast.py
       - run: python src/category_backtest.py
       - run: python src/summarize_categories.py
+      - run: python src/targeted_category_backtest.py
+      - run: python src/summarize_targeted_categories.py
       - run: python src/validate_project.py
