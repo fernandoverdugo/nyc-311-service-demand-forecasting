@@ -66,6 +66,29 @@ The staffing conversion is an explicit scenario assumption, not an NYC staffing 
 
 [Read the Milestone 1 findings](docs/MILESTONE1_FORECAST_BENCHMARK.md)
 
+## Milestone 2 — service-category forecast diagnostics
+
+**Complete**
+
+The eight highest-volume complaint types were evaluated using the same six rolling-origin 28-day folds.
+
+| Complaint type | Mean WAPE |
+| --- | ---: |
+| Illegal Parking | **8.6%** |
+| Blocked Driveway | **9.1%** |
+| Abandoned Vehicle | **20.5%** |
+| UNSANITARY CONDITION | **27.3%** |
+| Noise - Residential | **30.2%** |
+| Street Condition | **34.1%** |
+| Noise - Street/Sidewalk | **47.9%** |
+| HEAT/HOT WATER | **53.0%** |
+
+Median category WAPE is **28.8%**, compared with **7.3%** for the citywide aggregate.
+
+The result shows that aggregation materially improves forecastability and that a single forecasting method should not be applied mechanically to every service line.
+
+[Read the Milestone 2 findings](docs/MILESTONE2_CATEGORY_DIAGNOSTICS.md)
+
 ## Next milestone
 
-Milestone 2 will add service-category forecasting and diagnostics to determine where demand is more or less predictable.
+Milestone 3 will test category-specific seasonality and calendar features for the volatile service types, especially HEAT/HOT WATER and street/sidewalk noise.
