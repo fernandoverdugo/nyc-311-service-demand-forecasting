@@ -1,0 +1,45 @@
+{
+  "data": {
+    "dataset_id": "erm2-nwe9",
+    "analysis_start": "2022-01-01",
+    "analysis_end": "2026-09-30",
+    "days": 1734,
+    "total_requests": 16496781,
+    "mean_daily_requests": 9513.714532871973
+  },
+  "validation": {
+    "forecast_horizon_days": 28,
+    "backtest_folds": 6,
+    "primary_metric": "WAPE",
+    "design": "rolling-origin"
+  },
+  "preferred_model": "rolling_mean_28d",
+  "preferred_metrics": {
+    "mae": 790.1564625850339,
+    "rmse": 966.0080499374228,
+    "wape": 0.0728644941408858
+  },
+  "ranking": [
+    {
+      "model": "rolling_mean_28d",
+      "wape": 0.0728644941408858
+    },
+    {
+      "model": "ets_weekly",
+      "wape": 0.0734215257638212
+    },
+    {
+      "model": "hist_gradient_boosting",
+      "wape": 0.0772544670024406
+    },
+    {
+      "model": "naive",
+      "wape": 0.0808292852465883
+    },
+    {
+      "model": "seasonal_naive_7d",
+      "wape": 0.0912339732301723
+    }
+  ],
+  "interpretation": "The simplest recent-level baseline produced the lowest mean out-of-time WAPE. More complex models were retained as benchmarks but not selected."
+}
