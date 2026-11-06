@@ -37,6 +37,7 @@ def main():
     dashboard_builder = ROOT / "src" / "build_dashboard.py"
     dashboard_validator = ROOT / "src" / "validate_dashboard.py"
     milestone4 = ROOT / "docs" / "MILESTONE4_DASHBOARD.md"
+    benchmark_validator = ROOT / "src" / "validate_committed_benchmarks.py"
 
     for path in [
         source,
@@ -53,6 +54,7 @@ def main():
         dashboard_builder,
         dashboard_validator,
         milestone4,
+        benchmark_validator,
     ]:
         if not path.exists():
             raise RuntimeError(f"Missing required artifact: {path}")
