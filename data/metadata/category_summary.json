@@ -1,0 +1,100 @@
+{
+  "category_count": 8,
+  "categories": [
+    {
+      "complaint_type": "Illegal Parking",
+      "total_requests": 2434412,
+      "mae": 151.15221088435376,
+      "rmse": 193.9431699888172,
+      "wape": 0.0858394476639565
+    },
+    {
+      "complaint_type": "Blocked Driveway",
+      "total_requests": 812009,
+      "mae": 47.06675170068027,
+      "rmse": 56.650634102523405,
+      "wape": 0.0914181509445895
+    },
+    {
+      "complaint_type": "Abandoned Vehicle",
+      "total_requests": 322172,
+      "mae": 45.55357142857142,
+      "rmse": 54.74376783435574,
+      "wape": 0.2045356582675864
+    },
+    {
+      "complaint_type": "UNSANITARY CONDITION",
+      "total_requests": 559238,
+      "mae": 113.71045918367348,
+      "rmse": 126.181996201131,
+      "wape": 0.2731024605220907
+    },
+    {
+      "complaint_type": "Noise - Residential",
+      "total_requests": 1800082,
+      "mae": 318.8622448979592,
+      "rmse": 391.31962270649456,
+      "wape": 0.3020043469470435
+    },
+    {
+      "complaint_type": "Street Condition",
+      "total_requests": 391653,
+      "mae": 122.93027210884354,
+      "rmse": 144.58631210801747,
+      "wape": 0.3408563318053471
+    },
+    {
+      "complaint_type": "Noise - Street/Sidewalk",
+      "total_requests": 780567,
+      "mae": 341.1390306122449,
+      "rmse": 422.6019533158153,
+      "wape": 0.4788099705745184
+    },
+    {
+      "complaint_type": "HEAT/HOT WATER",
+      "total_requests": 1289976,
+      "mae": 134.7406462585034,
+      "rmse": 149.73905452067484,
+      "wape": 0.5297102266570014
+    }
+  ],
+  "most_predictable": [
+    {
+      "complaint_type": "Illegal Parking",
+      "total_requests": 2434412,
+      "wape": 0.0858394476639565
+    },
+    {
+      "complaint_type": "Blocked Driveway",
+      "total_requests": 812009,
+      "wape": 0.0914181509445895
+    },
+    {
+      "complaint_type": "Abandoned Vehicle",
+      "total_requests": 322172,
+      "wape": 0.2045356582675864
+    }
+  ],
+  "least_predictable": [
+    {
+      "complaint_type": "HEAT/HOT WATER",
+      "total_requests": 1289976,
+      "wape": 0.5297102266570014
+    },
+    {
+      "complaint_type": "Noise - Street/Sidewalk",
+      "total_requests": 780567,
+      "wape": 0.4788099705745184
+    },
+    {
+      "complaint_type": "Street Condition",
+      "total_requests": 391653,
+      "wape": 0.3408563318053471
+    }
+  ],
+  "median_category_wape": 0.28755340373456706,
+  "provenance": {
+    "workflow_run_id": 42258622317,
+    "note": "Eight highest-volume complaint types from the fixed 2022-01-01 through 2026-09-30 window; six 28-day rolling-origin folds; rolling_mean_28d benchmark."
+  }
+}
