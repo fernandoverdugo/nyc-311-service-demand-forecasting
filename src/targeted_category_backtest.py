@@ -126,7 +126,7 @@ def calendar_ml_forecast(train_frame, future_dates):
 
 
 def main():
-    source = ROOT / "data" / "raw" / "daily_category_requests.csv"
+    source = ROOT / "data" / "raw" / "daily_targeted_category_requests.csv"
     if not source.exists():
         raise FileNotFoundError(
             "Run src/fetch_category_counts.py before targeted backtesting."
