@@ -62,34 +62,28 @@ def top_categories(limit=8):
 
 
 def daily_category_counts(categories):
-    rows = []
-
-    for category in categories:
-        escaped = category.replace("'", "''")
-        select = (
-            "date_trunc_ymd(created_date) as date, "
-            "count(*) as request_count"
-        )
-        where = (
-            f"created_date >= '{CONFIG['analysis_start']}T00:00:00.000' "
-            f"AND created_date < '2026-10-01T00:00:00.000' "
-            f"AND complaint_type = '{escaped}'"
-        )
-        params = {
-            "$select": select,
-            "$where": where,
-            "$group": "date",
-            "$order": "date",
-            "$limit": 5000,
-        }
-        url = CONFIG["api_base"] + "?" + urllib.parse.urlencode(params)
-        payload = fetch_payload(url)
-
-        for row in payload:
-            row["complaint_type"] = category
-            rows.append(row)
-
-    return rows
+    quoted = ",".join(
+        "'" + value.replace("'", "''") + "'"
+        for value in categories
+    )
+    select = (
+        "date_trunc_ymd(created_date) as date, "
+        "complaint_type, count(*) as request_count"
+    )
+    where = (
+        f"created_date >= '{CONFIG['analysis_start']}T00:00:00.000' "
+        f"AND created_date < '2026-10-01T00:00:00.000' "
+        f"AND complaint_type IN ({quoted})"
+    )
+    params = {
+        "$select": select,
+        "$where": where,
+        "$group": "date, complaint_type",
+        "$order": "date, complaint_type",
+        "$limit": 50000,
+    }
+    url = CONFIG["api_base"] + "?" + urllib.parse.urlencode(params)
+    return fetch_payload(url)
 
 def main():
     top = top_categories()
