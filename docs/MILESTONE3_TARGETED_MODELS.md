@@ -80,9 +80,9 @@ The calendar/lag model reduced WAPE from **34.1% to 23.7%**, an improvement of *
 
 Annual naive performed poorly at **42.0% WAPE**, again showing that repeating the previous year's level is not automatically appropriate simply because a series has seasonal variation.
 
-## Portfolio takeaway
+## Analytical takeaway
 
-The project now demonstrates three distinct forecasting lessons:
+The analysis yields three distinct forecasting lessons:
 
 1. **Citywide demand:** a simple recent-level forecast can outperform more complex models.
 2. **Strong annual seasonality:** a transparent annual-naive forecast can outperform machine learning.
@@ -106,4 +106,4 @@ This reduces unnecessary load on NYC Open Data while preserving reproducibility 
 
 **Complete**
 
-The next milestone should turn the forecasting outputs into a stakeholder-facing forecast dashboard showing model accuracy, uncertainty, category forecastability, and staffing scenarios.
+The next milestone should turn the forecasting outputs into an operational forecast dashboard showing model accuracy, uncertainty, category forecastability, and staffing scenarios.
