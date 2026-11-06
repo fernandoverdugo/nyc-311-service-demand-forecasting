@@ -1,0 +1,97 @@
+{
+  "target_category_count": 3,
+  "validation": {
+    "forecast_horizon_days": 28,
+    "backtest_folds": 6,
+    "primary_metric": "WAPE",
+    "design": "rolling-origin"
+  },
+  "results": [
+    {
+      "complaint_type": "HEAT/HOT WATER",
+      "best_model": "annual_naive_365d",
+      "best_wape": 0.352008415417532,
+      "baseline_wape": 0.5297102266570014,
+      "improvement_vs_rolling_mean": 0.33546985181113964,
+      "models": [
+        {
+          "model": "annual_naive_365d",
+          "wape": 0.352008415417532,
+          "mae": 95.23809523809524,
+          "rmse": 128.62555751872796
+        },
+        {
+          "model": "calendar_lag_hgb",
+          "wape": 0.3691618605825691,
+          "mae": 90.315389120038,
+          "rmse": 110.53008429893646
+        },
+        {
+          "model": "rolling_mean_28d",
+          "wape": 0.5297102266570014,
+          "mae": 134.7406462585034,
+          "rmse": 149.73905452067484
+        }
+      ]
+    },
+    {
+      "complaint_type": "Noise - Street/Sidewalk",
+      "best_model": "calendar_lag_hgb",
+      "best_wape": 0.307144659550498,
+      "baseline_wape": 0.4788099705745184,
+      "improvement_vs_rolling_mean": 0.35852492966685967,
+      "models": [
+        {
+          "model": "calendar_lag_hgb",
+          "wape": 0.307144659550498,
+          "mae": 201.8100617736101,
+          "rmse": 274.65430392321537
+        },
+        {
+          "model": "rolling_mean_28d",
+          "wape": 0.4788099705745184,
+          "mae": 341.1390306122449,
+          "rmse": 422.6019533158153
+        },
+        {
+          "model": "annual_naive_365d",
+          "wape": 0.5109151776604071,
+          "mae": 347.69047619047615,
+          "rmse": 470.60764431537945
+        }
+      ]
+    },
+    {
+      "complaint_type": "Street Condition",
+      "best_model": "calendar_lag_hgb",
+      "best_wape": 0.2371946947498003,
+      "baseline_wape": 0.3408563318053471,
+      "improvement_vs_rolling_mean": 0.3041212011714802,
+      "models": [
+        {
+          "model": "calendar_lag_hgb",
+          "wape": 0.2371946947498003,
+          "mae": 85.63943630994765,
+          "rmse": 104.32517262965663
+        },
+        {
+          "model": "rolling_mean_28d",
+          "wape": 0.3408563318053471,
+          "mae": 122.93027210884354,
+          "rmse": 144.58631210801747
+        },
+        {
+          "model": "annual_naive_365d",
+          "wape": 0.4202636846415609,
+          "mae": 144.6607142857143,
+          "rmse": 168.93564108182878
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "workflow_run_id": 42263310346,
+    "head_sha": "abb8fe24eb6042d3ce832b479368dfdf299757e4",
+    "note": "Three volatile categories; six 28-day rolling-origin folds; compared 28-day rolling mean, 365-day annual naive, and recursive calendar/lag HistGradientBoosting."
+  }
+}
