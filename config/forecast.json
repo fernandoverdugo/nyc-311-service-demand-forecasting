@@ -8,5 +8,9 @@
   "backtest_folds": 6,
   "backtest_step_days": 28,
   "seasonal_lag_days": 7,
-  "random_seed": 699
+  "random_seed": 699,
+  "staffing": {
+    "requests_per_fte_day": 45,
+    "target_utilization": 0.85
+  }
 }
