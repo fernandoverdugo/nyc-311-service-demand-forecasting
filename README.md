@@ -89,6 +89,26 @@ The result shows that aggregation materially improves forecastability and that a
 
 [Read the Milestone 2 findings](docs/MILESTONE2_CATEGORY_DIAGNOSTICS.md)
 
+## Milestone 3 — category-specific seasonality and calendar models
+
+**Complete**
+
+Three volatile complaint types were retested with annual persistence and a recursive calendar/lag gradient-boosting model.
+
+| Complaint type | Rolling mean WAPE | Best model | Best WAPE | Improvement |
+| --- | ---: | --- | ---: | ---: |
+| HEAT/HOT WATER | 53.0% | Annual naive (365d) | **35.2%** | **33.5%** |
+| Noise - Street/Sidewalk | 47.9% | Calendar/lag HGB | **30.7%** | **35.9%** |
+| Street Condition | 34.1% | Calendar/lag HGB | **23.7%** | **30.4%** |
+
+The result reinforces the project's central forecasting lesson: model choice should follow the behavior of the series.
+
+- citywide demand favors a simple recent-level forecast;
+- HEAT/HOT WATER favors transparent annual persistence;
+- street noise and street condition benefit from richer lag/calendar features.
+
+[Read the Milestone 3 findings](docs/MILESTONE3_TARGETED_MODELS.md)
+
 ## Next milestone
 
-Milestone 3 will test category-specific seasonality and calendar features for the volatile service types, especially HEAT/HOT WATER and street/sidewalk noise.
+Milestone 4 will convert the validated forecast outputs into a stakeholder-facing dashboard covering model accuracy, category forecastability, uncertainty, and staffing scenarios.
