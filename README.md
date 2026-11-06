@@ -4,6 +4,8 @@
 
 A time-series forecasting portfolio project using NYC Open Data to forecast daily 311 service-request demand and evaluate how forecasts can support operational staffing and workload planning.
 
+**Live dashboard:** https://fernandoverdugo.github.io/nyc-311-service-demand-forecasting/dashboard.html
+
 ## Core question
 
 How accurately can a city operations team forecast near-term 311 service-request volume, and how can forecast uncertainty inform staffing decisions?
@@ -124,7 +126,7 @@ The validated forecasting outputs are now consolidated into a stakeholder-facing
 - complaint-category forecastability;
 - targeted model improvements for volatile service lines.
 
-**[View the stakeholder dashboard](docs/dashboard.html)**
+**[View the live stakeholder dashboard](https://fernandoverdugo.github.io/nyc-311-service-demand-forecasting/dashboard.html)**
 
 [Read the Milestone 4 findings](docs/MILESTONE4_DASHBOARD.md)
 
@@ -180,3 +182,8 @@ python src/validate_project.py
 ```
 
 Normal CI refreshes the live forecasting inputs used by Milestones 1 and 3 while retaining the validated eight-category Milestone 2 benchmark as committed metadata to avoid unnecessary load on NYC Open Data. A dedicated consistency check confirms that regenerated citywide, operational, and targeted-model results still match the committed benchmark metadata used by the README and dashboard.
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
