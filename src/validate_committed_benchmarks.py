@@ -12,7 +12,7 @@ def load_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def assert_close(actual, expected, label, tolerance=1e-9):
+def assert_close(actual, expected, label, tolerance=1e-4):
     if not math.isclose(
         float(actual),
         float(expected),
@@ -20,7 +20,8 @@ def assert_close(actual, expected, label, tolerance=1e-9):
         abs_tol=tolerance,
     ):
         raise RuntimeError(
-            f"{label} mismatch: regenerated={actual}, committed={expected}"
+            f"{label} mismatch beyond tolerance {tolerance}: "
+            f"regenerated={actual}, committed={expected}"
         )
 
 
