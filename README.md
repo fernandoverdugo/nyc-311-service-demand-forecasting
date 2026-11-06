@@ -1,5 +1,7 @@
 # NYC 311 Service Demand Forecasting
 
+[![Quality checks](https://github.com/fernandoverdugo/nyc-311-service-demand-forecasting/actions/workflows/quality-checks.yml/badge.svg)](https://github.com/fernandoverdugo/nyc-311-service-demand-forecasting/actions/workflows/quality-checks.yml)
+
 A time-series forecasting portfolio project using NYC Open Data to forecast daily 311 service-request demand and evaluate how forecasts can support operational staffing and workload planning.
 
 ## Core question
@@ -122,7 +124,7 @@ The validated forecasting outputs are now consolidated into a stakeholder-facing
 - complaint-category forecastability;
 - targeted model improvements for volatile service lines.
 
-**[View the dashboard source](docs/dashboard.html)**
+**[View the stakeholder dashboard](docs/dashboard.html)**
 
 [Read the Milestone 4 findings](docs/MILESTONE4_DASHBOARD.md)
 
@@ -173,7 +175,8 @@ python src/summarize_targeted_categories.py
 
 python src/build_dashboard.py
 python src/validate_dashboard.py
+python src/validate_committed_benchmarks.py
 python src/validate_project.py
 ```
 
-Normal CI refreshes the live forecasting inputs used by Milestones 1 and 3 while retaining the validated eight-category Milestone 2 benchmark as committed metadata to avoid unnecessary load on NYC Open Data.
+Normal CI refreshes the live forecasting inputs used by Milestones 1 and 3 while retaining the validated eight-category Milestone 2 benchmark as committed metadata to avoid unnecessary load on NYC Open Data. A dedicated consistency check confirms that regenerated citywide, operational, and targeted-model results still match the committed benchmark metadata used by the README and dashboard.
