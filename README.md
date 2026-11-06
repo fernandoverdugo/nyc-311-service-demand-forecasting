@@ -1,14 +1,33 @@
 # NYC 311 Service Demand Forecasting
 
 [![Quality checks](https://github.com/fernandoverdugo/nyc-311-service-demand-forecasting/actions/workflows/quality-checks.yml/badge.svg)](https://github.com/fernandoverdugo/nyc-311-service-demand-forecasting/actions/workflows/quality-checks.yml)
+[![Dashboard deployment](https://github.com/fernandoverdugo/nyc-311-service-demand-forecasting/actions/workflows/pages.yml/badge.svg)](https://github.com/fernandoverdugo/nyc-311-service-demand-forecasting/actions/workflows/pages.yml)
 
 A time-series forecasting portfolio project using NYC Open Data to forecast daily 311 service-request demand and evaluate how forecasts can support operational staffing and workload planning.
 
 **Live dashboard:** https://fernandoverdugo.github.io/nyc-311-service-demand-forecasting/
 
+## Executive summary
+
+- **Preferred citywide model:** 28-day rolling mean
+- **Validated citywide accuracy:** 7.29% mean WAPE across six rolling-origin folds
+- **Planning forecast:** approximately 10,842 requests per day over the 28-day horizon
+- **Illustrative staffing range:** 284 FTE at the point forecast, rising to 318 and 336 FTE at the 80% and 95% upper planning bands
+- **Key analytical lesson:** aggregate demand is substantially easier to forecast than many individual complaint categories, so model choice should be service-specific rather than uniform
+
+## Why this matters
+
+Municipal operations teams need to plan staffing and workload before actual service demand is known. A useful forecast therefore has to do more than minimize error: it should benchmark against simple alternatives, quantify uncertainty, identify where forecastability differs across service lines, and translate expected demand into an operational planning range.
+
+This project demonstrates that workflow using NYC 311 data. It is designed as a decision-support example for public-sector operations rather than as an attempt to predict individual behavior.
+
 ## Technical stack
 
 **Python · pandas · NumPy · scikit-learn · statsmodels · pytest · GitHub Actions · GitHub Pages**
+
+## Skills demonstrated
+
+`Python` · `time-series forecasting` · `rolling-origin validation` · `statistical modeling` · `machine learning` · `API ingestion` · `operational analytics` · `uncertainty analysis` · `CI/CD` · `GitHub Pages`
 
 ## Core question
 
@@ -157,6 +176,17 @@ stakeholder dashboard
 ```
 
 The central result is deliberately practical: model complexity is not treated as a goal. The project selects simple recent-level forecasting for citywide demand, annual persistence where strong seasonality supports it, and lag/calendar machine learning where it materially improves volatile categories.
+
+## Limitations
+
+- The benchmark uses a fixed historical window through **2026-09-30** for reproducibility rather than continuously changing headline results.
+- The models rely on historical 311 demand and calendar structure; they do not currently include weather, major events, holidays beyond their indirect historical effects, policy changes, or other exogenous drivers.
+- Category-level models are demonstrated on selected high-volume and volatile complaint types rather than every 311 service category.
+- Empirical 80% and 95% bands are planning ranges derived from backtest errors, not formal parametric confidence intervals.
+- Staffing estimates are illustrative workload scenarios based on explicit productivity and utilization assumptions, not official NYC staffing requirements.
+- Forecast performance should not be interpreted as evidence that historical patterns will persist through major structural or policy changes.
+
+See the [research design](docs/RESEARCH_DESIGN.md) and [forecasting metrics glossary](docs/METRICS.md) for additional context.
 
 ## Repository structure
 
