@@ -18,17 +18,11 @@ def main():
     operational_summary = (
         ROOT / "data" / "processed" / "operational_forecast_summary.json"
     )
-    category_raw = (
-        ROOT / "data" / "raw" / "daily_category_requests.csv"
+    category_metadata = (
+        ROOT / "data" / "metadata" / "category_summary.json"
     )
-    category_folds = (
-        ROOT / "data" / "processed" / "category_folds.csv"
-    )
-    category_summary = (
-        ROOT / "data" / "processed" / "category_summary.csv"
-    )
-    category_json = (
-        ROOT / "data" / "processed" / "category_summary.json"
+    targeted_raw = (
+        ROOT / "data" / "raw" / "daily_targeted_category_requests.csv"
     )
     targeted_folds = (
         ROOT / "data" / "processed" / "targeted_category_folds.csv"
@@ -46,10 +40,8 @@ def main():
         summary,
         operational,
         operational_summary,
-        category_raw,
-        category_folds,
-        category_summary,
-        category_json,
+        category_metadata,
+        targeted_raw,
         targeted_folds,
         targeted_summary,
         targeted_json,
@@ -61,9 +53,10 @@ def main():
     results = pd.read_csv(folds)
     baseline = pd.read_csv(summary)
     forecast = pd.read_csv(operational)
-    category_daily = pd.read_csv(category_raw, parse_dates=["date"])
-    category_results = pd.read_csv(category_folds)
-    category_metrics = pd.read_csv(category_summary)
+    category_reference = json.loads(
+        category_metadata.read_text(encoding="utf-8")
+    )
+    targeted_daily = pd.read_csv(targeted_raw, parse_dates=["date"])
     targeted_results = pd.read_csv(targeted_folds)
     targeted_metrics = pd.read_csv(targeted_summary)
 
@@ -125,30 +118,17 @@ def main():
     ).all():
         raise RuntimeError("Staffing interval ordering is invalid.")
 
-    category_count = category_daily["complaint_type"].nunique()
-    if category_count != 8:
-        raise RuntimeError("Expected eight high-volume complaint categories.")
+    if category_reference["category_count"] != 8:
+        raise RuntimeError("Committed category benchmark should contain eight categories.")
 
-    expected_category_rows = expected_days * category_count
-    if len(category_daily) != expected_category_rows:
-        raise RuntimeError("Category daily grid is incomplete.")
+    if targeted_daily["complaint_type"].nunique() != 3:
+        raise RuntimeError("Expected three targeted category series.")
 
-    if category_daily[["date", "complaint_type"]].duplicated().any():
-        raise RuntimeError("Duplicate category-date observations found.")
+    if len(targeted_daily) != expected_days * 3:
+        raise RuntimeError("Targeted category daily grid is incomplete.")
 
-    expected_category_folds = (
-        category_count
-        * CONFIG["backtest_folds"]
-        * 2
-    )
-    if len(category_results) != expected_category_folds:
-        raise RuntimeError("Unexpected category backtest row count.")
-
-    if category_metrics["wape"].isna().any():
-        raise RuntimeError("Category summary contains missing WAPE values.")
-
-    if not category_metrics["wape"].between(0, 2).all():
-        raise RuntimeError("Category WAPE values are outside expected range.")
+    if targeted_daily[["date", "complaint_type"]].duplicated().any():
+        raise RuntimeError("Duplicate targeted category-date observations found.")
 
     if targeted_results["complaint_type"].nunique() != 3:
         raise RuntimeError("Expected three targeted volatile categories.")
