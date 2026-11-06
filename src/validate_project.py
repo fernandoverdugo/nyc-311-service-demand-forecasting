@@ -18,6 +18,18 @@ def main():
     operational_summary = (
         ROOT / "data" / "processed" / "operational_forecast_summary.json"
     )
+    category_raw = (
+        ROOT / "data" / "raw" / "daily_category_requests.csv"
+    )
+    category_folds = (
+        ROOT / "data" / "processed" / "category_folds.csv"
+    )
+    category_summary = (
+        ROOT / "data" / "processed" / "category_summary.csv"
+    )
+    category_json = (
+        ROOT / "data" / "processed" / "category_summary.json"
+    )
 
     for path in [
         source,
@@ -25,6 +37,10 @@ def main():
         summary,
         operational,
         operational_summary,
+        category_raw,
+        category_folds,
+        category_summary,
+        category_json,
     ]:
         if not path.exists():
             raise RuntimeError(f"Missing required artifact: {path}")
@@ -33,6 +49,9 @@ def main():
     results = pd.read_csv(folds)
     baseline = pd.read_csv(summary)
     forecast = pd.read_csv(operational)
+    category_daily = pd.read_csv(category_raw, parse_dates=["date"])
+    category_results = pd.read_csv(category_folds)
+    category_metrics = pd.read_csv(category_summary)
 
     expected_days = len(
         pd.date_range(
@@ -91,6 +110,31 @@ def main():
         & (forecast["fte_upper_80"] <= forecast["fte_upper_95"])
     ).all():
         raise RuntimeError("Staffing interval ordering is invalid.")
+
+    category_count = category_daily["complaint_type"].nunique()
+    if category_count != 8:
+        raise RuntimeError("Expected eight high-volume complaint categories.")
+
+    expected_category_rows = expected_days * category_count
+    if len(category_daily) != expected_category_rows:
+        raise RuntimeError("Category daily grid is incomplete.")
+
+    if category_daily[["date", "complaint_type"]].duplicated().any():
+        raise RuntimeError("Duplicate category-date observations found.")
+
+    expected_category_folds = (
+        category_count
+        * CONFIG["backtest_folds"]
+        * 2
+    )
+    if len(category_results) != expected_category_folds:
+        raise RuntimeError("Unexpected category backtest row count.")
+
+    if category_metrics["wape"].isna().any():
+        raise RuntimeError("Category summary contains missing WAPE values.")
+
+    if not category_metrics["wape"].between(0, 2).all():
+        raise RuntimeError("Category WAPE values are outside expected range.")
 
     print("NYC 311 forecasting validation passed.")
 
