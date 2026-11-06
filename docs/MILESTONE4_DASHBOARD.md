@@ -74,7 +74,7 @@ Semantic validation checks that the dashboard contains the current headline fore
 
 **Complete**
 
-Milestones 1–4 now form a complete forecasting portfolio workflow:
+Milestones 1–4 now form a complete forecasting workflow:
 
 ```text
 NYC Open Data
