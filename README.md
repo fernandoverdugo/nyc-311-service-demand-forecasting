@@ -4,7 +4,11 @@
 
 A time-series forecasting portfolio project using NYC Open Data to forecast daily 311 service-request demand and evaluate how forecasts can support operational staffing and workload planning.
 
-**Live dashboard:** https://fernandoverdugo.github.io/nyc-311-service-demand-forecasting/dashboard.html
+**Live dashboard:** https://fernandoverdugo.github.io/nyc-311-service-demand-forecasting/
+
+## Technical stack
+
+**Python · pandas · NumPy · scikit-learn · statsmodels · pytest · GitHub Actions · GitHub Pages**
 
 ## Core question
 
@@ -126,7 +130,7 @@ The validated forecasting outputs are now consolidated into a stakeholder-facing
 - complaint-category forecastability;
 - targeted model improvements for volatile service lines.
 
-**[View the live stakeholder dashboard](https://fernandoverdugo.github.io/nyc-311-service-demand-forecasting/dashboard.html)**
+**[View the live stakeholder dashboard](https://fernandoverdugo.github.io/nyc-311-service-demand-forecasting/)**
 
 [Read the Milestone 4 findings](docs/MILESTONE4_DASHBOARD.md)
 
@@ -153,6 +157,21 @@ stakeholder dashboard
 ```
 
 The central result is deliberately practical: model complexity is not treated as a goal. The project selects simple recent-level forecasting for citywide demand, annual persistence where strong seasonality supports it, and lag/calendar machine learning where it materially improves volatile categories.
+
+## Repository structure
+
+```text
+.
+├── config/                  # Forecast settings and staffing assumptions
+├── data/
+│   └── metadata/            # Validated benchmark summaries used by the dashboard
+├── docs/                    # Milestone documentation and published dashboard
+├── src/                     # Ingestion, forecasting, evaluation, and dashboard code
+├── tests/                   # Baseline, statistical, ML, and operational tests
+├── LICENSE
+├── requirements.txt
+└── README.md
+```
 
 ## Reproduce the analysis
 
