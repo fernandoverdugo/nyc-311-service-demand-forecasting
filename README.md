@@ -34,13 +34,38 @@ Dataset ID: `erm2-nwe9`
 
 The source is updated daily. To preserve reproducibility, the initial benchmark uses a fixed analysis window from **2022-01-01 through 2026-09-30**.
 
-## Planned milestones
+## Milestone 1 — forecast benchmark, uncertainty, and staffing translation
 
-1. API ingestion and daily demand series
-2. Forecasting baselines and rolling-origin validation
-3. Statistical forecasting
-4. Lag-feature machine-learning benchmark
-5. Category-level diagnostics
-6. Prediction intervals and staffing translation
-7. Forecast dashboard
-8. Final portfolio quality pass
+**Complete**
+
+The first benchmark uses 1,734 daily observations and six rolling-origin 28-day backtest folds.
+
+| Model | Mean WAPE |
+| --- | ---: |
+| 28-day rolling mean | **7.29%** |
+| Weekly ETS | **7.34%** |
+| HistGradientBoosting | **7.73%** |
+| Naive | **8.08%** |
+| 7-day seasonal naive | **9.12%** |
+
+The preferred model is the **28-day rolling mean**. More complex models were retained as benchmarks but were not selected because they did not improve the primary out-of-time accuracy metric.
+
+Operational forecast:
+
+- point forecast: **10,842 requests/day**
+- empirical 80% error half-width: **1,314 requests/day**
+- empirical 95% error half-width: **1,978 requests/day**
+
+Illustrative staffing scenario:
+
+- point forecast: **284 FTE**
+- 80% upper demand band: **318 FTE**
+- 95% upper demand band: **336 FTE**
+
+The staffing conversion is an explicit scenario assumption, not an NYC staffing standard.
+
+[Read the Milestone 1 findings](docs/MILESTONE1_FORECAST_BENCHMARK.md)
+
+## Next milestone
+
+Milestone 2 will add service-category forecasting and diagnostics to determine where demand is more or less predictable.
