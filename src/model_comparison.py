@@ -11,9 +11,10 @@ def main():
     processed = ROOT / "data" / "processed"
     baseline = pd.read_csv(processed / "baseline_folds.csv")
     ets = pd.read_csv(processed / "ets_folds.csv")
+    ml = pd.read_csv(processed / "ml_folds.csv")
 
     combined = pd.concat(
-        [baseline, ets],
+        [baseline, ets, ml],
         ignore_index=True,
     )
 
