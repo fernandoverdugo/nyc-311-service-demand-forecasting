@@ -318,6 +318,10 @@ th {{ color:var(--muted); font-weight:600; }}
     Source: NYC Open Data, 311 Service Requests from 2020 to Present
     (dataset erm2-nwe9). Forecast benchmark uses a fixed historical analysis
     window for reproducibility.
+    <br><br>
+    <a href="https://github.com/fernandoverdugo/nyc-311-service-demand-forecasting">View repository</a>
+    · <a href="https://github.com/fernandoverdugo/nyc-311-service-demand-forecasting/blob/main/docs/RESEARCH_DESIGN.md">Research design</a>
+    · <a href="https://github.com/fernandoverdugo/nyc-311-service-demand-forecasting/blob/main/docs/METRICS.md">Metrics glossary</a>
   </p>
 </main>
 </body>
