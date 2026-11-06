@@ -33,6 +33,10 @@ def main():
     targeted_json = (
         ROOT / "data" / "processed" / "targeted_category_summary.json"
     )
+    dashboard = ROOT / "docs" / "dashboard.html"
+    dashboard_builder = ROOT / "src" / "build_dashboard.py"
+    dashboard_validator = ROOT / "src" / "validate_dashboard.py"
+    milestone4 = ROOT / "docs" / "MILESTONE4_DASHBOARD.md"
 
     for path in [
         source,
@@ -45,6 +49,10 @@ def main():
         targeted_folds,
         targeted_summary,
         targeted_json,
+        dashboard,
+        dashboard_builder,
+        dashboard_validator,
+        milestone4,
     ]:
         if not path.exists():
             raise RuntimeError(f"Missing required artifact: {path}")
