@@ -23,4 +23,6 @@ jobs:
       - run: python -m pytest -q
       - run: python src/fetch_daily_counts.py
       - run: python src/baseline_backtest.py
+      - run: python src/statistical_backtest.py
+      - run: python src/model_comparison.py
       - run: python src/validate_project.py
