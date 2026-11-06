@@ -70,7 +70,7 @@ They are operational planning ranges, not parametric confidence intervals.
 
 The staffing figures in the dashboard convert forecast demand into an illustrative FTE requirement using explicit assumptions about requests handled per FTE per day and target utilization.
 
-These are scenario assumptions for demonstrating workload translation; they are not NYC staffing standards.
+These are scenario assumptions for illustrating workload translation; they are not NYC staffing standards.
 
 ## Target utilization
 
