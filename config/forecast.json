@@ -1,0 +1,12 @@
+{
+  "dataset_id": "erm2-nwe9",
+  "api_base": "https://data.cityofnewyork.us/resource/erm2-nwe9.json",
+  "analysis_start": "2022-01-01",
+  "analysis_end": "2026-09-30",
+  "frequency": "D",
+  "forecast_horizon_days": 28,
+  "backtest_folds": 6,
+  "backtest_step_days": 28,
+  "seasonal_lag_days": 7,
+  "random_seed": 699
+}
