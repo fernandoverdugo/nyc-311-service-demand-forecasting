@@ -1,4 +1,6 @@
 import json
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -28,15 +30,38 @@ def build_url():
     return CONFIG["api_base"] + "?" + urllib.parse.urlencode(params)
 
 
-def main():
-    url = build_url()
+def fetch_payload(url, attempts=5):
     request = urllib.request.Request(
         url,
         headers={"User-Agent": "nyc-311-demand-forecasting/1.0"},
     )
 
-    with urllib.request.urlopen(request, timeout=60) as response:
-        payload = json.loads(response.read().decode("utf-8"))
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(
+                request,
+                timeout=60,
+            ) as response:
+                return json.loads(
+                    response.read().decode("utf-8")
+                )
+        except urllib.error.HTTPError as error:
+            if error.code not in {429, 500, 502, 503, 504}:
+                raise
+            if attempt == attempts:
+                raise
+        except urllib.error.URLError:
+            if attempt == attempts:
+                raise
+
+        time.sleep(2 ** (attempt - 1))
+
+    raise RuntimeError("NYC Open Data request failed after retries.")
+
+
+def main():
+    url = build_url()
+    payload = fetch_payload(url)
 
     frame = pd.DataFrame(payload)
     if frame.empty:
