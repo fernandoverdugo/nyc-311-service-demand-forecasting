@@ -1,0 +1,15 @@
+{
+  "preferred_model": "rolling_mean_28d",
+  "forecast_horizon_days": 28,
+  "point_forecast_daily": 10841.642857142857,
+  "interval_half_width_80": 1314.035714285715,
+  "interval_half_width_95": 1978.0464285714288,
+  "fte_point": 284,
+  "fte_upper_80": 318,
+  "fte_upper_95": 336,
+  "staffing_assumptions": {
+    "requests_per_fte_day": 45,
+    "target_utilization": 0.85,
+    "status": "illustrative scenario assumption; not an NYC staffing standard"
+  }
+}
