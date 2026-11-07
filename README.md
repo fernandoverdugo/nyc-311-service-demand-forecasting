@@ -136,11 +136,11 @@ The result reinforces the project's central forecasting lesson: model choice sho
 
 [Read the Milestone 3 findings](docs/MILESTONE3_TARGETED_MODELS.md)
 
-## Milestone 4 — stakeholder forecast dashboard
+## Milestone 4 — operational forecast dashboard
 
 **Complete**
 
-The validated forecasting outputs are now consolidated into a stakeholder-facing dashboard covering:
+The validated forecasting outputs are now consolidated into an operational dashboard covering:
 
 - citywide forecast demand and preferred-model accuracy;
 - empirical 80% and 95% planning ranges;
@@ -149,7 +149,7 @@ The validated forecasting outputs are now consolidated into a stakeholder-facing
 - complaint-category forecastability;
 - targeted model improvements for volatile service lines.
 
-**[View the live stakeholder dashboard](https://fernandoverdugo.github.io/nyc-311-service-demand-forecasting/)**
+**[View the live dashboard](https://fernandoverdugo.github.io/nyc-311-service-demand-forecasting/)**
 
 [Read the Milestone 4 findings](docs/MILESTONE4_DASHBOARD.md)
 
