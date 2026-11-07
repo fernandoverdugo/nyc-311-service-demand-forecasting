@@ -80,4 +80,4 @@ GitHub Actions also cancels superseded workflow runs so multiple commits do not 
 
 **Complete**
 
-The next milestone will add service-category forecasting and diagnostics to determine whether forecast accuracy varies meaningfully across request types.
+The subsequent category analysis adds service-category forecasting and diagnostics to assess whether forecast accuracy varies meaningfully across request types.
