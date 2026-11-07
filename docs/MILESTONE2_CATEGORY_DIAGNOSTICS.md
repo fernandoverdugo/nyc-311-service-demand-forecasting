@@ -96,4 +96,4 @@ To reduce stress on the public API, categories are now fetched as separate small
 
 **Complete**
 
-The next milestone will test whether category-specific seasonality and calendar features materially improve the volatile categories rather than assuming the citywide preferred model is optimal everywhere.
+The subsequent targeted-model analysis tests whether category-specific seasonality and calendar features materially improve volatile categories rather than assuming the citywide preferred model is optimal everywhere.
