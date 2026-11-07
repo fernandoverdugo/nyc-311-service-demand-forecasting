@@ -106,4 +106,4 @@ This reduces unnecessary load on NYC Open Data while preserving reproducibility 
 
 **Complete**
 
-The next milestone should turn the forecasting outputs into an operational forecast dashboard showing model accuracy, uncertainty, category forecastability, and staffing scenarios.
+The final dashboard stage consolidates the forecasting outputs into an operational view of model accuracy, uncertainty, category forecastability, and staffing scenarios.
